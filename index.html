@@ -3,95 +3,439 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hahaha</title>
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#100909">
+<title>FOR MY GL</title>
+
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Comic Neue', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    overflow: hidden;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #100909;
+  color: #fff;
+  font-family: Georgia, serif;
+  text-align: center;
+}
+
+header {
+  padding: 25px 15px 10px;
+}
+
+header h1 {
+  color: #e9b7b7;
+  letter-spacing: 5px;
+  font-size: clamp(25px, 6vw, 38px);
+  margin-bottom: 10px;
+}
+
+header p,
+.hint {
+  color: #bda5a5;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.slide {
+  display: none;
+  max-width: 700px;
+  min-height: 420px;
+  margin: 15px auto;
+  padding: 25px 20px;
+  animation: fadeIn .6s ease;
+}
+
+.slide.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  color: #e9b7b7;
+  font-size: 26px;
+}
+
+/* SLIDE 1: TEDDY, FLOWERS & CHOCOLATES */
+
+.cute-card {
+  position: relative;
+  overflow: hidden;
+  margin: 25px auto;
+  padding: 30px 15px;
+  border-radius: 25px;
+  border: 1px solid #c47782;
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      #fff0f3 0 3px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      #f8d5dc 0 4px,
+      transparent 5px
+    ),
+    linear-gradient(
+      145deg,
+      #ffe8ed,
+      #f5cbd5,
+      #fff0e5
+    );
+  color: #71323c;
+  box-shadow: 0 8px 25px #0006;
+}
+
+.cute-decor {
+  font-size: clamp(30px, 8vw, 48px);
+  letter-spacing: 8px;
+  line-height: 1.8;
+  animation: float 3s ease-in-out infinite;
+}
+
+.teddy {
+  font-size: clamp(95px, 25vw, 145px);
+  line-height: 1.4;
+  filter: drop-shadow(0 7px 5px #71323c22);
+  animation: float 3s ease-in-out infinite;
+}
+
+.cute-title {
+  color: #781f2c;
+  font-size: clamp(21px, 5vw, 28px);
+  margin: 10px 0;
+}
+
+.cute-message {
+  color: #71323c;
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 440px;
+  margin: 12px auto;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* SLIDE 2: MUSIC */
+
+.music-box {
+  background: #1d1012;
+  border: 1px solid #71323c;
+  border-radius: 18px;
+  margin: 30px auto;
+  padding: 25px 18px;
+}
+
+.disc {
+  width: 125px;
+  height: 125px;
+  margin: 15px auto 25px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #e9b7b7 0 7%,
+    #781f2c 9% 23%,
+    #160d0e 25% 58%,
+    #a64a59 60% 64%,
+    #160d0e 66%
+  );
+  border: 3px solid #b77a82;
+}
+
+.disc.playing {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+audio {
+  display: block;
+  width: 100%;
+  margin: 15px auto;
+}
+
+/* SLIDE 3: FINAL MESSAGE */
+
+.letter {
+  background: #f5e8e2;
+  color: #382125;
+  text-align: left;
+  padding: 25px 22px;
+  border-radius: 9px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  box-shadow: 0 8px 25px #0005;
+}
+
+.letter h3 {
+  text-align: center;
+  color: #781f2c;
+  margin-top: 0;
+}
+
+.navigation {
+  padding: 15px 10px 30px;
+}
+
+button {
+  background: #781f2c;
+  color: white;
+  border: 1px solid #c47782;
+  border-radius: 25px;
+  padding: 12px 23px;
+  margin: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background .2s ease,
+              transform .2s ease;
+}
+
+button:hover {
+  background: #a52b40;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: default;
+}
+
+#pageNumber {
+  display: inline-block;
+  color: #c1aaaa;
+  font-size: 13px;
+  margin: 0 8px;
+}
+
+footer {
+  color: #816d6d;
+  font-size: 12px;
+  padding: 15px;
+}
+
+@media (max-width: 480px) {
+  .slide {
+    padding: 15px;
+    min-height: 350px;
   }
 
-  .envelope-container {
-    cursor: pointer;
-    text-align: center;
-  }
-
-  .envelope {
-    font-size: 5em;
-    transition: transform 0.3s;
-  }
-
-  .envelope:hover {
-    transform: scale(1.2);
+  .cute-card {
+    padding: 25px 12px;
   }
 
   .letter {
-    max-width: 600px;
-    background: rgba(0,0,0,0.2);
-    padding: 30px;
-    border-radius: 15px;
-    margin-top: 20px;
-    display: none;
-    text-align: left;
-    color: #fff;
+    padding: 18px;
+    font-size: 14px;
   }
 
-  /* Floating hearts */
-  .floating-heart {
-    position: absolute;
-    font-size: 24px;
-    animation: floatUp linear infinite;
+  button {
+    padding: 11px 17px;
   }
+}
 
-  @keyframes floatUp {
-    0% { transform: translateY(100vh) scale(1); opacity: 1; }
-    100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
+}
 </style>
 </head>
+
 <body>
 
-<div class="envelope-container" onclick="openLetter()">
-  <div class="envelope">✉️</div>
-  <div class="letter" id="letter">
-hi, good morning, baby.
+<header>
+  <h1>A SIMPLE MESSAGE FOR YOU MY GL ♡</h1>
+  <p>some thing i made only for youu po.</p>
+</header>
 
-i just want to say na i really like you. i mean, gusto q talaga na maging part ka ng life q, and i want to upgrade things between us, i can’t go on a day without chatting ya, like goddamn men nagayuma mu ata si me kaya namimiss agad kita HAHAHAHA. well i hope na me talaga ung inaantay mo umamin ng totoo, kasi if di aq un iiyak aq ng malakas HAHAHAHA. bbbbbbut still, can i court you po? sounds funny since super far natin sa isa't isa HAHAHAHA, but kaya naman kitang i-pursue, and i’m willing to make an effort and sacrifice for ya. I like you po
+<!-- SLIDE 1: CUTE GIFT AND MOTIVATIONAL MESSAGE -->
+
+<section class="slide active" id="slide1">
+  <h2>♡</h2>
+  <p>Something sweet, just like you.</p>
+
+  <div class="cute-card">
+
+    <div class="cute-decor">🌷 🌸 🌷</div>
+
+    <div class="teddy">🧸</div>
+
+    <div class="cute-title">
+      a little bear for you
+    </div>
+
+    <p class="cute-message">
+      sending you flowers, chocolates, and a little teddy bear
+      to make your day a little sweeter.
+    </p>
+
+    <div class="cute-decor">🍫 🎀 🍫</div>
+
+    <div class="cute-title">
+      simple message for you my gl♡
+    </div>
+
+    <p class="cute-message">
+      hallooo jen, i just wanna remind you na i'm proud of you po. always take care of yourself and don't give up, okayyy? you deserve happiness and all the good things in life. anywaysss, may little message lang ako for you, so click mo naaa mwehehehe :))
+    </p>
+
   </div>
+
+  <p class="hint">
+    Always remember that you're doing better than you think. ♡
+  </p>
+</section>
+
+<!-- SLIDE 2: MUSIC -->
+
+<section class="slide" id="slide2">
+  <h2>A little song before the final letter</h2>
+
+  <div class="music-box">
+
+    <div class="disc" id="disc"></div>
+
+    <h3>Our Little Soundtrack</h3>
+
+    <audio id="music" controls loop preload="metadata">
+      <source src="till.mp3" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
+
+    <p class="hint">
+      Press play, then continue to the final letter
+    </p>
+
+  </div>
+</section>
+
+<!-- SLIDE 3: MESSAGE -->
+
+<section class="slide" id="slide3">
+  <h2>My final letter for you</h2>
+  <p>Read this at your own pace.</p>
+
+  <div class="letter">
+    <h3>FROM JEYM</h3>
+soooo hallooo jenn, mwehehehe. sorry for bothering you po, i just wanna send this message for you nadin po. first of all, i wanna say sorry ngapo pala. sorry for being a bad bf, i realize now na ang lala ko palang bf that time, and sorry din for not respecting you po. i know i made a lot of mistakes, and i'm really sorry po talaga sa lahat :< i don't want this message to be kinda dramatic ganern, perooo again, hallooo ulittttt.
+
+kamusta na you? okay kana ba? i hope you're doing okay na and nakaheal kana sa lahat ng mga nagawa ko. i genuinely hope na masaya kana ngayon and you're doing better na. pero btw, congrats!! ang galing mopo super sa badminton, mwehehehe. i'm really happy for you po, and i hope you continue doing what you love and achieving more things. sorry for saying something like "lack of discipline" ganern, nagkamali ako that time. instead na ayusin ko, mas lalo ko pang sinira, so sorryyy.
+
+looking back, narealize ko na ang dami ko palang pagkukulang sayo that time. there were things na dapat ginawa ko, and things na hindi ko dapat sinabi or ginawa in the first place. i know na hindi sapat yung sorry para maayos lahat ng mga nagawa ko, pero i still wanna acknowledge my mistakes and apologize for them. you didn't deserve to be treated that way, and i'm sorry na hindi ko naibigay sayo yung respect and understanding na deserve mo.
+
+i'm not saying all of this para maawa ka sakin or para may makuha akong something from you. i just want to say these things kasi i know na may mga pagkakamali akong kailangan kong panagutan. i'm still learning from everything that happened, and i hope na someday, maging better person din ako because of those mistakes. i know na i can't change what happened before, pero at least i can learn from it and make sure na hindi ko na ulitin yung mga bagay na nakasakit sa ibang tao.
+
+thank you din pala for the memories we shared, jenn. kahit hindi naging perfect yung relationship natin, i'm still thankful na naging part ka ng life ko. i learned a lot from you and from the things that happened between us. i'm sorry if there were times na instead na maging pahinga mo ako, naging dahilan pa ako ng stress and sakit ng ulo mo. you deserved better from me that time, and i wish na mas naging understanding and respectful ako sayo. don't worry po, hindi naman ako nagmessage para guluhin ka ulit or para pilitin kang makipag-usap sakin. i just wanted to check up on you and say the things na dapat sinabi ko nang maayos before. you don't have to reply naman po if you don't want to, okay lang talaga. i respect your peace and whatever you feel right now.
+
+anyways, ayun lang naman pooo. i hope life treats you well, and i hope na marami ka pang maachieve sa journey mopo. keep doing your best lang po, and don't forget to be proud of yourself sa mga achievements mo, kahit small things lang yan. i'm rooting for you from afar, and i genuinely wish you happiness and peace.
+
+again, i'm really sorry for everything, jenn. sorry sa mga pagkakamali ko, sa mga nasabi ko, and sa mga times na hindi kita naintindihan. i hope na someday, kapag naalala mo yung mga nangyari satin, hindi puro bad memories yung maalala mo. i'm not expecting anything from you po, i just hope na you're doing okay and that you're happy with where you are now.
+
+so ayun, hallooo and goodbye na rin sigurooo, mwehehehe. take care of yourself always, jenn, and goodluck sa lahat ng gagawin mo!! thank you for everything, and i'm sorry ulit sa lahat ng nagawa ko. i wish you nothing but the best pooo. ingat ka palagiii!! :))
+  </div>
+
+  <p class="hint">
+    anyways thank you somuch for taking the time to read this po ♡
+  </p>
+</section>
+
+<!-- NAVIGATION -->
+
+<div class="navigation">
+
+  <button id="prevBtn" type="button" hidden>
+    ← Previous
+  </button>
+
+  <span id="pageNumber">Slide 1 of 3</span>
+
+  <button id="nextBtn" type="button">
+    Next →
+  </button>
+
 </div>
 
+<footer>♡</footer>
+
 <script>
-function openLetter() {
-  const letter = document.getElementById('letter');
-  if(letter.style.display === 'none') {
-    letter.style.display = 'block';
-  } else {
-    letter.style.display = 'none';
-  }
+const slides = document.querySelectorAll(".slide");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const pageNumber = document.getElementById("pageNumber");
+const music = document.getElementById("music");
+const disc = document.getElementById("disc");
+
+let currentSlide = 0;
+
+function showSlide(index) {
+  if (index < 0 || index >= slides.length) return;
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === index);
+  });
+
+  currentSlide = index;
+
+  prevBtn.hidden = index === 0;
+  nextBtn.hidden = index === slides.length - 1;
+
+  pageNumber.textContent =
+    `Slide ${index + 1} of ${slides.length}`;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
-// Floating hearts
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'floating-heart';
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.fontSize = 14 + Math.random() * 20 + 'px';
-  heart.innerText = '❤️';
-  heart.style.animationDuration = 3 + Math.random() * 3 + 's';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
+nextBtn.addEventListener("click", () => {
+  showSlide(currentSlide + 1);
+});
 
-setInterval(createHeart, 500);
+prevBtn.addEventListener("click", () => {
+  showSlide(currentSlide - 1);
+});
+
+music.addEventListener("play", () => {
+  disc.classList.add("playing");
+});
+
+music.addEventListener("pause", () => {
+  disc.classList.remove("playing");
+});
+
+music.addEventListener("ended", () => {
+  disc.classList.remove("playing");
+});
+
+showSlide(0);
 </script>
 
 </body>
